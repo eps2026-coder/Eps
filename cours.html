@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cours EPS - Prépa Concours Maroc</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* HEADER */
+    header {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: #0f766e;
+    }
+
+    .logo span {
+      color: #111827;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    nav ul li a {
+      font-size: 15px;
+      font-weight: 600;
+      color: #374151;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: #0f766e;
+    }
+
+    .nav-btn {
+      background: #0f766e;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 25px;
+      transition: 0.3s;
+    }
+
+    .nav-btn:hover {
+      background: #115e59;
+      color: white;
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    .menu-icon {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .page-hero {
+      background: linear-gradient(135deg, #0f766e, #134e4a);
+      color: white;
+      padding: 90px 20px;
+      text-align: center;
+    }
+
+    .page-hero h1 {
+      font-size: 44px;
+      margin-bottom: 18px;
+    }
+
+    .page-hero p {
+      max-width: 850px;
+      margin: auto;
+      font-size: 18px;
+      color: #d1fae5;
+    }
+
+    /* GENERAL */
+    section {
+      padding: 70px 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title h2 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: #6b7280;
+      max-width: 760px;
+      margin: auto;
+    }
+
+    /* SEARCH STYLE BOX */
+    .intro-box {
+      background: white;
+      border-radius: 25px;
+      padding: 35px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      border: 1px solid #e5e7eb;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 30px;
+      align-items: center;
+      margin-bottom: 50px;
+    }
+
+    .intro-text h2 {
+      color: #111827;
+      font-size: 30px;
+      margin-bottom: 15px;
+    }
+
+    .intro-text p {
+      color: #6b7280;
+      margin-bottom: 20px;
+    }
+
+    .intro-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .intro-tags span {
+      background: #ecfdf5;
+      color: #0f766e;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .intro-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .stat-card {
+      background: #f9fafb;
+      border-radius: 18px;
+      padding: 22px;
+      text-align: center;
+      border: 1px solid #e5e7eb;
+    }
+
+    .stat-card h3 {
+      color: #0f766e;
+      font-size: 28px;
+      margin-bottom: 5px;
+    }
+
+    .stat-card p {
+      color: #6b7280;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* COURSES GRID */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .course-card {
+      background: white;
+      border-radius: 22px;
+      padding: 30px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      transition: 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .course-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: #0f766e;
+    }
+
+    .course-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.1);
+    }
+
+    .course-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 18px;
+    }
+
+    .course-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 17px;
+      background: #ccfbf1;
+      color: #0f766e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 29px;
+      flex-shrink: 0;
+    }
+
+    .course-header h3 {
+      font-size: 20px;
+      color: #111827;
+      line-height: 1.3;
+    }
+
+    .course-card p {
+      color: #6b7280;
+      font-size: 15px;
+      margin-bottom: 18px;
+    }
+
+    .lesson-list {
+      list-style: none;
+      margin-bottom: 25px;
+    }
+
+    .lesson-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid #f0f0f0;
+      color: #374151;
+      font-size: 14px;
+    }
+
+    .lesson-list li:last-child {
+      border-bottom: none;
+    }
+
+    .lesson-list li::before {
+      content: "📌 ";
+    }
+
+    .course-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: #ecfdf5;
+      color: #0f766e;
+      padding: 7px 13px;
+      border-radius: 18px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .course-btn {
+      background: #0f766e;
+      color: white;
+      padding: 11px 18px;
+      border-radius: 25px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .course-btn:hover {
+      background: #115e59;
+      transform: translateY(-2px);
+    }
+
+    /* METHOD */
+    .method {
+      background: #ffffff;
+    }
+
+    .method-box {
+      background: linear-gradient(135deg, #ecfdf5, #f0fdfa);
+      border-radius: 25px;
+      padding: 40px;
+      border: 1px solid #ccfbf1;
+    }
+
+    .method-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .step {
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
+      text-align: center;
+      border: 1px solid #e5e7eb;
+    }
+
+    .step-number {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: #0f766e;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 15px;
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .step h3 {
+      color: #111827;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .step p {
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #020617;
+      color: #d1d5db;
+      text-align: center;
+      padding: 25px 20px;
+      font-size: 14px;
+    }
+
+    footer span {
+      color: #5eead4;
+      font-weight: 700;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 950px) {
+      .intro-box {
+        grid-template-columns: 1fr;
+      }
+
+      .courses-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .method-steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .menu-icon {
+        display: block;
+      }
+
+      nav ul {
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        left: 20px;
+        background: white;
+        flex-direction: column;
+        padding: 25px;
+        border-radius: 20px;
+        display: none;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+
+      .menu-toggle:checked ~ nav ul {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .page-hero h1 {
+        font-size: 32px;
+      }
+
+      .page-hero p {
+        font-size: 16px;
+      }
+
+      .courses-grid,
+      .method-steps,
+      .intro-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title h2,
+      .intro-text h2 {
+        font-size: 27px;
+      }
+
+      .course-card,
+      .intro-box,
+      .method-box {
+        padding: 26px;
+      }
+
+      .course-footer {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="navbar">
+      <div class="logo">EPS <span>Concours</span></div>
+
+      <input type="checkbox" id="menu-toggle" class="menu-toggle">
+      <label for="menu-toggle" class="menu-icon">☰</label>
+
+      <nav>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="modules.html">Modules</a></li>
+          <li><a href="cours.html" class="active">Cours</a></li>
+          <li><a href="resumes.html">Résumés</a></li>
+          <li><a href="qcm.html">QCM</a></li>
+          <li><a href="sujets.html">Sujets</a></li>
+          <li><a href="actualites.html">Actualités</a></li>
+          <li><a href="contact.html" class="nav-btn">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <h1>Cours de préparation au concours EPS</h1>
+    <p>
+      Retrouvez les cours essentiels pour préparer le concours de recrutement des enseignants
+      d’Éducation Physique et Sportive au Maroc, organisés par modules et par notions.
+    </p>
+  </section>
+
+  <!-- INTRO -->
+  <section>
+    <div class="container">
+
+      <div class="intro-box">
+        <div class="intro-text">
+          <h2>Une préparation claire, progressive et organisée</h2>
+          <p>
+            Cette page regroupe les principaux cours à étudier pour maîtriser les bases
+            didactiques, pédagogiques, scientifiques et professionnelles nécessaires au concours EPS.
+          </p>
+
+          <div class="intro-tags">
+            <span>Didactique</span>
+            <span>Pédagogie</span>
+            <span>EPS</span>
+            <span>Évaluation</span>
+            <span>Législation</span>
+            <span>Méthodologie</span>
+          </div>
+        </div>
+
+        <div class="intro-stats">
+          <div class="stat-card">
+            <h3>9</h3>
+            <p>Modules principaux</p>
+          </div>
+
+          <div class="stat-card">
+            <h3>40+</h3>
+            <p>Notions à réviser</p>
+          </div>
+
+          <div class="stat-card">
+            <h3>100%</h3>
+            <p>Organisation simple</p>
+          </div>
+
+          <div class="stat-card">
+            <h3>EPS</h3>
+            <p>Spécial concours</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title">
+        <h2>Liste des cours disponibles</h2>
+        <p>
+          Chaque carte représente un module. Vous pourrez ensuite créer une page détaillée
+          pour chaque cours.
+        </p>
+      </div>
+
+      <div class="courses-grid">
+
+        <!-- COURSE 1 -->
+        <div class="course-card">
+          <div class="course-header">
+            <div class="course-icon">📘</div>
+            <h3>Didactique générale et disciplinaire</h3>
+          </div>
+
+          <p>
+            Comprendre les fondements de la didactique et leur application dans l’enseignement de l’EPS.
+          </p>
+
+          <ul class="lesson-list">
+            <li>Définition de la didactique générale</li>
+            <li>Didactique disciplinaire en EPS</li>
+            <li>Transposition didactique</li>
+            <li>Contrat didactique</li>
+            <li>Situation-problème</li>
+          </ul>
+
+          <div class="course-footer">
+            <span class="badge">Cours essentiel</span>
+            <a href="cours-didactique.html" class="course-btn">Ouvrir</a>
+          </div>
+        </div>
+
+        <!-- COURSE 2 -->
+        <div class="course-card">
+          <div class="course-header">
+            <div class="course-icon">🧠</div>
+            <h3>Sciences de l’éducation</h3>
+          </div>
+
+          <p>
+            Étudier les théories pédagogiques et les principes qui expliquent l’apprentissage scolaire.
+          </p>
+
+          <ul class="lesson-list">
+            <li>Béhaviorisme</li>
+            <li>Constructivisme</li>
+            <li>Socioconstructivisme</li>
+            <li>Motivation scolaire</li>
+            <li>Gestion de classe</li>
+          </ul>
+
+          <div class="course-footer">
+            <span class="badge">Base pédagogique</span>
+            <a href="cours-sciences-education.html" class="course-btn">Ouvrir</a>
+          </div>
+        </div>
+
+        <!-- COURSE 3 -->
+        <div class="course-card">
+          <div class="course-header">
+            <div class="course-icon">🏃</div>
+            <h3>Spécialité EPS</h3>
+          </div>
+
+          <p>
+            Réviser les activités physiques et sportives les plus importantes dans le concours EPS.
+          </p>
+
+          <ul class="lesson-list">
+            <li>Athlétisme : course, saut, lancer</li>
+            <li>Sports collectifs</li>
+            <li>Gymnastique</li>
+            <li>Activités d’opposition</li>
+            <li>Activités physiques d’expression</li>
+          </ul>
+
+          <div class="course-footer">
+            <span class="badge">Module central</span>
+            <a href="cours-specialite.html" class="course-btn">Ouvrir</a>
+          </div>
+        </div>
+
+        <!-- COURSE 4 -->
+        <div class="course-card">
+          <div class="course-header">
+            <div class="course-icon">📋</div>
+            <h3>Planification des apprentissages</h3>
+          </div>
+
+          <p>
+            Apprendre à organiser les apprentissages en EPS à court, moyen et long terme.
+          </p>
+
+          <ul class="lesson-list">
+            <li>Objectifs pédagogiques</li>
+            <li>Compétences attendues</li>
+            <li>Cycle d’apprentissage</li>
+            <li>Fiche pédagogique</li>
+            <li>Progression annuelle</li>
+          </ul>
+
+          <div class="course-footer">
+            <span class="badge">Pratique professionnelle</span>
+            <a href="cours-planification.html" class="course-btn">Ouvrir</a>
+          </div>
+        </div>
+
+        <!-- COURSE 5 -->
+        <div class="course-card">
+          <div class="course-header">
+            <div class="course-icon">✅</div>
+            <h3>Évaluation en EPS</h3>
+          </div>
+
+          <p>
+            Comprendre comment observer, mesurer et accompagner les apprentissages des élèves.
+          </p>
+
+          <ul class="lesson-list">
+            <li>Évaluation diagnostique</li>
+            <li>Évaluation formative</li>
+            <li>Évaluation sommative</li>
+            <li>Critères de réussite</li>
+            <li>Indicateurs d’observation</li>
+          </ul>
+
+          <div class="course-footer">
+            <span class="badge">Très demandé</span>
+            <a href="cours-evaluation.html" class="course-btn">Ouvrir</a>
+          </div>
+        </div>
+
+        <!-- COURSE 6 -->
+        <div class="course-card">
+          <div class="course-header">
+            <div class="course-icon">⚖️</div>
+            <h3>Législation scolaire</h3>
+          </div>
+
+          <p>
+            Maîtriser les règles essentielles liées au métier d’enseignant et au système éducatif marocain.
+          </p>
+
+          <ul class="lesson-list">
+            <li>Droits et devoirs de l’enseignant</li>
+            <li>Responsabilité professionnelle</li>
+            <li>Vie scolaire</li>
+            <li>Absences, congés et autorisations</li>
+            <li>Textes officiels</li>
+          </ul>
+
+          <div class="course-footer">
+            <span class="badge">Culture professionnelle</span>
+            <a href="cours-legislation.html" class="course-btn">Ouvrir</a>
+          </div>
+        </div>
+
+        <!-- COURSE 7 -->
+        <div class="course-card">
+          <div class="course-header">
+            <div class="course-icon">🧩</div>
+            <h3>Pédagogie et méthodes d’enseignement</h3>
+          </div>
+
+          <p>
+            Identifier les approches pédagogiques utiles pour enseigner efficacement l’EPS.
+          </p>
+
+          <ul class="lesson-list">
+            <li>Approche par compétences</li>
+            <li>Pédagogie active</li>
+            <li>Enseignement explicite</li>
+            <li>Pédagogie différenciée</li>
+            <li>Remédiation pédagogique</li>
+          </ul>
+
+          <div class="course-footer">
+            <span class="badge">Méthodes utiles</span>
+            <a href="cours-pedagogie.html" class="course-btn">Ouvrir</a>
+          </div>
+        </div>
+
+        <!-- COURSE 8 -->
+        <div class="course-card">
+          <div class="course-header">
+            <div class="course-icon">📊</div>
+            <h3>Analyse de pratique professionnelle</h3>
+          </div>
+
+          <p>
+            Savoir analyser une situation d’enseignement et proposer des solutions adaptées.
+          </p>
+
+          <ul class="lesson-list">
+            <li>Observation d’une séance</li>
+            <li>Analyse des difficultés</li>
+            <li>Gestion de l’hétérogénéité</li>
+            <li>Intervention pédagogique</li>
+            <li>Posture professionnelle</li>
+          </ul>
+
+          <div class="course-footer">
+            <span class="badge">Concours oral/écrit</span>
+            <a href="cours-analyse-pratique.html" class="course-btn">Ouvrir</a>
+          </div>
+        </div>
+
+        <!-- COURSE 9 -->
+        <div class="course-card">
+          <div class="course-header">
+            <div class="course-icon">📝</div>
+            <h3>Méthodologie de réponse</h3>
+          </div>
+
+          <p>
+            Apprendre à construire une réponse claire, organisée et convaincante dans les épreuves.
+          </p>
+
+          <ul class="lesson-list">
+            <li>Lire et analyser le sujet</li>
+            <li>Dégager les mots-clés</li>
+            <li>Construire un plan</li>
+            <li>Rédiger une réponse structurée</li>
+            <li>Éviter les erreurs fréquentes</li>
+          </ul>
+
+          <div class="course-footer">
+            <span class="badge">Réussite concours</span>
+            <a href="cours-methodologie.html" class="course-btn">Ouvrir</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- METHOD -->
+  <section class="method">
+    <div class="container">
+      <div class="section-title">
+        <h2>Méthode conseillée pour étudier les cours</h2>
+        <p>
+          Pour une préparation efficace, il est préférable de suivre une progression simple
+          et régulière.
+        </p>
+      </div>
+
+      <div class="method-box">
+        <div class="method-steps">
+
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>Lire</h3>
+            <p>Commencez par comprendre le cours sans apprendre mécaniquement.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>Résumer</h3>
+            <p>Transformez chaque cours en fiche courte avec les mots-clés essentiels.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>Appliquer</h3>
+            <p>Travaillez des QCM, exercices et situations professionnelles.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">4</div>
+            <h3>Réviser</h3>
+            <p>Revenez régulièrement sur les cours déjà étudiés pour fixer les connaissances.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      © 2026 <span>EPS Concours Maroc</span> — Cours de préparation au concours EPS.
+    </p>
+  </footer>
+
+</body>
+</html>
