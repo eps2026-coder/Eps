@@ -29,7 +29,6 @@
       color: inherit;
     }
 
-    /* HEADER */
     header {
       width: 100%;
       background: rgba(255, 255, 255, 0.96);
@@ -43,20 +42,43 @@
     .navbar {
       max-width: 1200px;
       margin: auto;
-      padding: 18px 20px;
+      padding: 14px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     .logo {
-      font-size: 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
       font-weight: 800;
       color: #0f766e;
     }
 
-    .logo span {
+    .logo img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 2px solid #ccfbf1;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .logo-text strong {
+      color: #0f766e;
+      font-size: 20px;
+    }
+
+    .logo-text span {
       color: #111827;
+      font-size: 13px;
+      font-weight: 700;
     }
 
     nav ul {
@@ -101,7 +123,6 @@
       cursor: pointer;
     }
 
-    /* HERO VIDEO GRAND ACCUEIL */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -234,7 +255,6 @@
       color: #d1fae5;
     }
 
-    /* SECTIONS */
     section {
       padding: 80px 20px;
     }
@@ -261,7 +281,6 @@
       margin: auto;
     }
 
-    /* OBJECTIFS */
     .objectives {
       background: #ffffff;
     }
@@ -298,7 +317,6 @@
       font-weight: 700;
     }
 
-    /* MODULES */
     .modules-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -349,7 +367,6 @@
       font-weight: 800;
     }
 
-    /* RESSOURCES */
     .resources {
       background: #ffffff;
     }
@@ -391,7 +408,6 @@
       font-weight: 800;
     }
 
-    /* ACTUALITÉS */
     .news-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -434,7 +450,6 @@
       font-weight: 800;
     }
 
-    /* À PROPOS */
     .about {
       background: linear-gradient(135deg, #ecfdf5, #f0fdfa);
     }
@@ -455,7 +470,6 @@
       font-size: 17px;
     }
 
-    /* CONTACT */
     .contact-box {
       background: #111827;
       color: white;
@@ -489,7 +503,6 @@
       transform: translateY(-3px);
     }
 
-    /* FOOTER */
     footer {
       background: #020617;
       color: #d1d5db;
@@ -503,7 +516,6 @@
       font-weight: 800;
     }
 
-    /* RESPONSIVE */
     @media (max-width: 950px) {
       .hero-content h1 {
         font-size: 42px;
@@ -533,7 +545,7 @@
 
       nav ul {
         position: absolute;
-        top: 70px;
+        top: 78px;
         right: 20px;
         left: 20px;
         background: white;
@@ -550,6 +562,19 @@
     }
 
     @media (max-width: 600px) {
+      .logo img {
+        width: 42px;
+        height: 42px;
+      }
+
+      .logo-text strong {
+        font-size: 17px;
+      }
+
+      .logo-text span {
+        font-size: 11px;
+      }
+
       .hero {
         min-height: 92vh;
         padding: 90px 20px 60px;
@@ -585,10 +610,16 @@
 
 <body>
 
-  <!-- HEADER -->
   <header>
     <div class="navbar">
-      <a href="index.html" class="logo">EPS <span>Concours</span></a>
+
+      <a href="index.html" class="logo">
+        <img src="logo.jpeg" alt="Logo EPS Concours">
+        <div class="logo-text">
+          <strong>EPS Concours</strong>
+          <span>Prépa Maroc</span>
+        </div>
+      </a>
 
       <input type="checkbox" id="menu-toggle" class="menu-toggle">
       <label for="menu-toggle" class="menu-icon">☰</label>
@@ -608,7 +639,6 @@
     </div>
   </header>
 
-  <!-- ACCUEIL AVEC VIDÉO GRAND FORMAT -->
   <section class="hero">
 
     <video class="hero-video" autoplay muted loop playsinline>
@@ -659,10 +689,8 @@
 
   </section>
 
-  <!-- OBJECTIFS -->
   <section class="objectives">
     <div class="container">
-
       <div class="section-title">
         <h2>Objectifs de la plateforme</h2>
         <p>
@@ -696,14 +724,11 @@
           <p>Suivre les informations importantes</p>
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- MODULES -->
   <section>
     <div class="container">
-
       <div class="section-title">
         <h2>Modules principaux du concours EPS</h2>
         <p>
@@ -713,7 +738,6 @@
       </div>
 
       <div class="modules-grid">
-
         <div class="module-card">
           <div class="module-icon">📘</div>
           <h3>Didactique de l’EPS</h3>
@@ -773,16 +797,12 @@
           </p>
           <a href="cours-legislation.html">Voir le cours →</a>
         </div>
-
       </div>
-
     </div>
   </section>
 
-  <!-- RESSOURCES -->
   <section class="resources">
     <div class="container">
-
       <div class="section-title">
         <h2>Ressources de préparation</h2>
         <p>
@@ -792,7 +812,6 @@
       </div>
 
       <div class="resources-grid">
-
         <div class="resource-box">
           <h3>Résumés</h3>
           <p>Fiches synthétiques pour retenir les notions essentielles.</p>
@@ -816,16 +835,12 @@
           <p>Sujets précédents pour comprendre l’esprit du concours.</p>
           <a href="sujets.html">Accéder →</a>
         </div>
-
       </div>
-
     </div>
   </section>
 
-  <!-- ACTUALITÉS -->
   <section>
     <div class="container">
-
       <div class="section-title">
         <h2>Actualités et informations importantes</h2>
         <p>
@@ -835,7 +850,6 @@
       </div>
 
       <div class="news-grid">
-
         <div class="news-card">
           <div class="news-date">Concours</div>
           <div class="news-content">
@@ -871,16 +885,12 @@
             <a href="actualites.html">Lire plus →</a>
           </div>
         </div>
-
       </div>
-
     </div>
   </section>
 
-  <!-- À PROPOS -->
   <section class="about">
     <div class="container">
-
       <div class="section-title">
         <h2>À propos de la plateforme</h2>
       </div>
@@ -894,14 +904,11 @@
           dans un seul espace numérique.
         </p>
       </div>
-
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section>
     <div class="container">
-
       <div class="contact-box">
         <h2>Besoin d’aide ou de ressources ?</h2>
         <p>
@@ -910,11 +917,9 @@
         </p>
         <a href="contact.html">Nous contacter</a>
       </div>
-
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <p>
       © 2026 <span>EPS Concours Maroc</span> — Plateforme de préparation au concours EPS.
