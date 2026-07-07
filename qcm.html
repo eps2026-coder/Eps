@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QCM EPS - Prépa Concours Maroc</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: #0f766e;
+    }
+
+    .logo span {
+      color: #111827;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    nav ul li a {
+      font-size: 15px;
+      font-weight: 600;
+      color: #374151;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: #0f766e;
+    }
+
+    .nav-btn {
+      background: #0f766e;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 25px;
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    .menu-icon {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    .page-hero {
+      background: linear-gradient(135deg, #0f766e, #134e4a);
+      color: white;
+      padding: 90px 20px;
+      text-align: center;
+    }
+
+    .page-hero h1 {
+      font-size: 44px;
+      margin-bottom: 18px;
+    }
+
+    .page-hero p {
+      max-width: 850px;
+      margin: auto;
+      font-size: 18px;
+      color: #d1fae5;
+    }
+
+    section {
+      padding: 70px 20px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title h2 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: #6b7280;
+      max-width: 760px;
+      margin: auto;
+    }
+
+    .qcm-intro {
+      background: white;
+      border-radius: 25px;
+      padding: 35px;
+      margin-bottom: 35px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      border: 1px solid #e5e7eb;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .qcm-intro h2 {
+      font-size: 30px;
+      margin-bottom: 12px;
+      color: #111827;
+    }
+
+    .qcm-intro p {
+      color: #6b7280;
+    }
+
+    .score-box {
+      background: linear-gradient(135deg, #ecfdf5, #f0fdfa);
+      border-radius: 20px;
+      padding: 25px;
+      text-align: center;
+      border: 1px solid #ccfbf1;
+    }
+
+    .score-box h3 {
+      font-size: 42px;
+      color: #0f766e;
+    }
+
+    .score-box p {
+      font-weight: 700;
+      color: #374151;
+    }
+
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 35px;
+    }
+
+    .filter-btn {
+      border: none;
+      background: white;
+      color: #374151;
+      padding: 11px 18px;
+      border-radius: 25px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s;
+      border: 1px solid #e5e7eb;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: #0f766e;
+      color: white;
+    }
+
+    .question-card {
+      background: white;
+      border-radius: 22px;
+      padding: 28px;
+      margin-bottom: 25px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+
+    .question-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .question-number {
+      background: #0f766e;
+      color: white;
+      padding: 7px 14px;
+      border-radius: 20px;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .module-badge {
+      background: #ecfdf5;
+      color: #0f766e;
+      padding: 7px 14px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .question-card h3 {
+      font-size: 20px;
+      color: #111827;
+      margin-bottom: 18px;
+    }
+
+    .options {
+      display: grid;
+      gap: 12px;
+    }
+
+    .option {
+      border: 1px solid #e5e7eb;
+      border-radius: 15px;
+      padding: 14px 16px;
+      cursor: pointer;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      transition: 0.3s;
+      background: #f9fafb;
+    }
+
+    .option:hover {
+      background: #ecfdf5;
+      border-color: #0f766e;
+    }
+
+    .option input {
+      accent-color: #0f766e;
+    }
+
+    .option.correct {
+      background: #dcfce7;
+      border-color: #16a34a;
+      color: #166534;
+      font-weight: 700;
+    }
+
+    .option.wrong {
+      background: #fee2e2;
+      border-color: #dc2626;
+      color: #991b1b;
+      font-weight: 700;
+    }
+
+    .explanation {
+      display: none;
+      margin-top: 18px;
+      padding: 16px;
+      background: #f8fafc;
+      border-left: 5px solid #0f766e;
+      border-radius: 12px;
+      color: #475569;
+      font-size: 15px;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 35px;
+    }
+
+    .btn-main,
+    .btn-reset {
+      border: none;
+      padding: 14px 24px;
+      border-radius: 30px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 15px;
+    }
+
+    .btn-main {
+      background: #0f766e;
+      color: white;
+    }
+
+    .btn-main:hover {
+      background: #115e59;
+      transform: translateY(-2px);
+    }
+
+    .btn-reset {
+      background: #111827;
+      color: white;
+    }
+
+    .btn-reset:hover {
+      background: #374151;
+      transform: translateY(-2px);
+    }
+
+    .result-message {
+      display: none;
+      background: white;
+      border-radius: 22px;
+      padding: 30px;
+      margin-top: 35px;
+      text-align: center;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+
+    .result-message h2 {
+      color: #0f766e;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background: #020617;
+      color: #d1d5db;
+      text-align: center;
+      padding: 25px 20px;
+      font-size: 14px;
+    }
+
+    footer span {
+      color: #5eead4;
+      font-weight: 700;
+    }
+
+    @media (max-width: 950px) {
+      .qcm-intro {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-icon {
+        display: block;
+      }
+
+      nav ul {
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        left: 20px;
+        background: white;
+        flex-direction: column;
+        padding: 25px;
+        border-radius: 20px;
+        display: none;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      }
+
+      .menu-toggle:checked ~ nav ul {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .page-hero h1 {
+        font-size: 32px;
+      }
+
+      .page-hero p {
+        font-size: 16px;
+      }
+
+      .section-title h2,
+      .qcm-intro h2 {
+        font-size: 27px;
+      }
+
+      .qcm-intro,
+      .question-card {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="navbar">
+      <div class="logo">EPS <span>Concours</span></div>
+
+      <input type="checkbox" id="menu-toggle" class="menu-toggle">
+      <label for="menu-toggle" class="menu-icon">☰</label>
+
+      <nav>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="modules.html">Modules</a></li>
+          <li><a href="cours.html">Cours</a></li>
+          <li><a href="resumes.html">Résumés</a></li>
+          <li><a href="qcm.html" class="active">QCM</a></li>
+          <li><a href="sujets.html">Sujets</a></li>
+          <li><a href="actualites.html">Actualités</a></li>
+          <li><a href="contact.html" class="nav-btn">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <h1>QCM et tests de préparation</h1>
+    <p>
+      Testez vos connaissances en didactique, pédagogie, spécialité EPS, évaluation,
+      législation scolaire et méthodologie du concours.
+    </p>
+  </section>
+
+  <!-- QCM SECTION -->
+  <section>
+    <div class="container">
+
+      <div class="qcm-intro">
+        <div>
+          <h2>Entraînez-vous régulièrement</h2>
+          <p>
+            Les QCM permettent de vérifier rapidement votre compréhension des notions essentielles.
+            Choisissez un module, répondez aux questions, puis cliquez sur « Corriger le QCM ».
+          </p>
+        </div>
+
+        <div class="score-box">
+          <h3 id="scoreDisplay">0/0</h3>
+          <p>Score actuel</p>
+        </div>
+      </div>
+
+      <div class="section-title">
+        <h2>Banque de questions</h2>
+        <p>
+          Utilisez les filtres pour travailler un module précis ou afficher tous les QCM.
+        </p>
+      </div>
+
+      <div class="filters">
+        <button class="filter-btn active" onclick="filterQuestions('all', this)">Tous</button>
+        <button class="filter-btn" onclick="filterQuestions('didactique', this)">Didactique</button>
+        <button class="filter-btn" onclick="filterQuestions('pedagogie', this)">Pédagogie</button>
+        <button class="filter-btn" onclick="filterQuestions('eps', this)">Spécialité EPS</button>
+        <button class="filter-btn" onclick="filterQuestions('evaluation', this)">Évaluation</button>
+        <button class="filter-btn" onclick="filterQuestions('legislation', this)">Législation</button>
+      </div>
+
+      <div id="questionsContainer"></div>
+
+      <div class="actions">
+        <button class="btn-main" onclick="checkAnswers()">Corriger le QCM</button>
+        <button class="btn-reset" onclick="resetQuiz()">Recommencer</button>
+      </div>
+
+      <div class="result-message" id="resultMessage">
+        <h2 id="resultTitle">Résultat</h2>
+        <p id="resultText"></p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      © 2026 <span>EPS Concours Maroc</span> — QCM de préparation au concours EPS.
+    </p>
+  </footer>
+
+  <script>
+    const questions = [
+      {
+        module: "didactique",
+        badge: "Didactique",
+        question: "La didactique s’intéresse principalement à :",
+        options: [
+          "La gestion administrative de l’établissement",
+          "L’étude des contenus à enseigner et des conditions de leur apprentissage",
+          "La surveillance des élèves uniquement",
+          "L’organisation des examens nationaux"
+        ],
+        answer: 1,
+        explanation: "La didactique étudie les savoirs à enseigner, leur transformation et les conditions qui permettent aux élèves de les apprendre."
+      },
+      {
+        module: "didactique",
+        badge: "Didactique",
+        question: "La transposition didactique signifie :",
+        options: [
+          "Transformer un savoir savant en savoir enseignable",
+          "Remplacer le professeur par un manuel",
+          "Évaluer uniquement la performance physique",
+          "Supprimer les difficultés du cours"
+        ],
+        answer: 0,
+        explanation: "La transposition didactique consiste à adapter un savoir scientifique ou technique pour qu’il devienne accessible aux élèves."
+      },
+      {
+        module: "pedagogie",
+        badge: "Pédagogie",
+        question: "Dans l’approche par compétences, l’élève doit surtout être capable de :",
+        options: [
+          "Réciter uniquement le cours",
+          "Mobiliser ses connaissances dans une situation donnée",
+          "Mémoriser sans comprendre",
+          "Éviter le travail en groupe"
+        ],
+        answer: 1,
+        explanation: "L’approche par compétences vise la mobilisation des connaissances, capacités et attitudes pour résoudre une situation."
+      },
+      {
+        module: "pedagogie",
+        badge: "Pédagogie",
+        question: "La pédagogie différenciée consiste à :",
+        options: [
+          "Donner le même exercice au même rythme à tous les élèves",
+          "Adapter les situations aux besoins et niveaux des élèves",
+          "Supprimer l’évaluation",
+          "Travailler uniquement avec les meilleurs élèves"
+        ],
+        answer: 1,
+        explanation: "La différenciation pédagogique permet de prendre en compte l’hétérogénéité des élèves."
+      },
+      {
+        module: "eps",
+        badge: "Spécialité EPS",
+        question: "En course de vitesse, les phases principales sont :",
+        options: [
+          "Échauffement, repos, récupération",
+          "Départ, accélération, maintien de vitesse, arrivée",
+          "Saut, lancer, réception",
+          "Passe, tir, dribble"
+        ],
+        answer: 1,
+        explanation: "Le sprint comprend généralement le départ, l’accélération, le maintien de la vitesse et le finish."
+      },
+      {
+        module: "eps",
+        badge: "Spécialité EPS",
+        question: "Dans les sports collectifs, un principe d’action important est :",
+        options: [
+          "Éviter la coopération",
+          "Conserver, progresser et marquer",
+          "Rester immobile",
+          "Refuser la communication"
+        ],
+        answer: 1,
+        explanation: "Les sports collectifs reposent sur des principes comme conserver le ballon, progresser vers la cible et marquer."
+      },
+      {
+        module: "evaluation",
+        badge: "Évaluation",
+        question: "L’évaluation diagnostique se réalise généralement :",
+        options: [
+          "Avant l’apprentissage",
+          "Uniquement à la fin de l’année",
+          "Après la correction finale",
+          "Sans observation des élèves"
+        ],
+        answer: 0,
+        explanation: "L’évaluation diagnostique sert à connaître le niveau initial des élèves avant de commencer l’apprentissage."
+      },
+      {
+        module: "evaluation",
+        badge: "Évaluation",
+        question: "Un critère de réussite permet de :",
+        options: [
+          "Décrire ce qui permet de dire que l’action est réussie",
+          "Punir les élèves faibles",
+          "Remplacer la séance",
+          "Supprimer les consignes"
+        ],
+        answer: 0,
+        explanation: "Le critère de réussite aide l’élève et l’enseignant à savoir si l’objectif de la tâche est atteint."
+      },
+      {
+        module: "legislation",
+        badge: "Législation",
+        question: "La responsabilité de l’enseignant concerne notamment :",
+        options: [
+          "La sécurité et l’encadrement des élèves pendant l’activité",
+          "La gestion des salaires",
+          "La construction des établissements",
+          "La nomination des directeurs"
+        ],
+        answer: 0,
+        explanation: "L’enseignant est responsable de l’encadrement, de la sécurité et du suivi pédagogique des élèves pendant ses activités."
+      },
+      {
+        module: "legislation",
+        badge: "Législation",
+        question: "Un enseignant doit respecter principalement :",
+        options: [
+          "Ses droits seulement",
+          "Ses devoirs professionnels et les textes réglementaires",
+          "Ses préférences personnelles uniquement",
+          "Les règles des élèves uniquement"
+        ],
+        answer: 1,
+        explanation: "Le métier d’enseignant exige le respect des obligations professionnelles, des textes officiels et de l’éthique du métier."
+      }
+    ];
+
+    let currentFilter = "all";
+
+    function renderQuestions() {
+      const container = document.getElementById("questionsContainer");
+      container.innerHTML = "";
+
+      const filteredQuestions = currentFilter === "all"
+        ? questions
+        : questions.filter(q => q.module === currentFilter);
+
+      document.getElementById("scoreDisplay").textContent = `0/${filteredQuestions.length}`;
+
+      filteredQuestions.forEach((q, index) => {
+        const originalIndex = questions.indexOf(q);
+
+        const card = document.createElement("div");
+        card.className = "question-card";
+        card.setAttribute("data-module", q.module);
+
+        card.innerHTML = `
+          <div class="question-top">
+            <span class="question-number">Question ${index + 1}</span>
+            <span class="module-badge">${q.badge}</span>
+          </div>
+
+          <h3>${q.question}</h3>
+
+          <div class="options">
+            ${q.options.map((option, optionIndex) => `
+              <label class="option" id="q${originalIndex}-option${optionIndex}">
+                <input type="radio" name="question-${originalIndex}" value="${optionIndex}">
+                <span>${option}</span>
+              </label>
+            `).join("")}
+          </div>
+
+          <div class="explanation" id="explanation-${originalIndex}">
+            <strong>Correction :</strong> ${q.explanation}
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    function filterQuestions(filter, button) {
+      currentFilter = filter;
+
+      document.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.classList.remove("active");
+      });
+
+      button.classList.add("active");
+
+      document.getElementById("resultMessage").style.display = "none";
+      renderQuestions();
+    }
+
+    function checkAnswers() {
+      const filteredQuestions = currentFilter === "all"
+        ? questions
+        : questions.filter(q => q.module === currentFilter);
+
+      let score = 0;
+
+      filteredQuestions.forEach(q => {
+        const originalIndex = questions.indexOf(q);
+        const selected = document.querySelector(`input[name="question-${originalIndex}"]:checked`);
+
+        q.options.forEach((_, optionIndex) => {
+          const optionLabel = document.getElementById(`q${originalIndex}-option${optionIndex}`);
+          if (optionLabel) {
+            optionLabel.classList.remove("correct", "wrong");
+          }
+        });
+
+        if (selected) {
+          const selectedValue = parseInt(selected.value);
+
+          if (selectedValue === q.answer) {
+            score++;
+            document.getElementById(`q${originalIndex}-option${selectedValue}`).classList.add("correct");
+          } else {
+            document.getElementById(`q${originalIndex}-option${selectedValue}`).classList.add("wrong");
+            document.getElementById(`q${originalIndex}-option${q.answer}`).classList.add("correct");
+          }
+        } else {
+          document.getElementById(`q${originalIndex}-option${q.answer}`).classList.add("correct");
+        }
+
+        document.getElementById(`explanation-${originalIndex}`).style.display = "block";
+      });
+
+      document.getElementById("scoreDisplay").textContent = `${score}/${filteredQuestions.length}`;
+
+      const resultMessage = document.getElementById("resultMessage");
+      const resultTitle = document.getElementById("resultTitle");
+      const resultText = document.getElementById("resultText");
+
+      resultMessage.style.display = "block";
+
+      const percentage = (score / filteredQuestions.length) * 100;
+
+      if (percentage >= 80) {
+        resultTitle.textContent = "Excellent travail";
+        resultText.textContent = `Votre score est ${score}/${filteredQuestions.length}. Vous maîtrisez bien ce module.`;
+      } else if (percentage >= 50) {
+        resultTitle.textContent = "Bon effort";
+        resultText.textContent = `Votre score est ${score}/${filteredQuestions.length}. Continuez la révision pour renforcer vos connaissances.`;
+      } else {
+        resultTitle.textContent = "Révision nécessaire";
+        resultText.textContent = `Votre score est ${score}/${filteredQuestions.length}. Relisez le cours puis recommencez le QCM.`;
+      }
+
+      resultMessage.scrollIntoView({ behavior: "smooth" });
+    }
+
+    function resetQuiz() {
+      document.querySelectorAll("input[type='radio']").forEach(input => {
+        input.checked = false;
+      });
+
+      document.querySelectorAll(".option").forEach(option => {
+        option.classList.remove("correct", "wrong");
+      });
+
+      document.querySelectorAll(".explanation").forEach(exp => {
+        exp.style.display = "none";
+      });
+
+      const filteredQuestions = currentFilter === "all"
+        ? questions
+        : questions.filter(q => q.module === currentFilter);
+
+      document.getElementById("scoreDisplay").textContent = `0/${filteredQuestions.length}`;
+      document.getElementById("resultMessage").style.display = "none";
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+    renderQuestions();
+  </script>
+
+</body>
+</html>
