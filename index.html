@@ -109,7 +109,7 @@
       max-width: 1200px;
       margin: auto;
       display: grid;
-      grid-template-columns: 1.2fr 1fr;
+      grid-template-columns: 1.1fr 1fr;
       gap: 50px;
       align-items: center;
     }
@@ -163,32 +163,35 @@
       transform: translateY(-3px);
     }
 
-    .hero-card {
+    .hero-video {
       background: white;
-      color: #1f2937;
       border-radius: 25px;
-      padding: 35px;
+      padding: 18px;
       box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
     }
 
-    .hero-card h3 {
+    .hero-video video {
+      width: 100%;
+      border-radius: 18px;
+      display: block;
+    }
+
+    .video-caption {
+      margin-top: 15px;
+      text-align: center;
+      padding: 5px 10px 10px;
+    }
+
+    .video-caption h3 {
       color: #0f766e;
-      margin-bottom: 20px;
-      font-size: 24px;
+      font-size: 22px;
+      margin-bottom: 8px;
     }
 
-    .hero-card ul {
-      list-style: none;
-    }
-
-    .hero-card ul li {
-      padding: 12px 0;
-      border-bottom: 1px solid #e5e7eb;
-      font-weight: 600;
-    }
-
-    .hero-card ul li:last-child {
-      border-bottom: none;
+    .video-caption p {
+      color: #6b7280;
+      font-size: 15px;
+      margin: 0;
     }
 
     section {
@@ -215,6 +218,42 @@
       color: #6b7280;
       max-width: 760px;
       margin: auto;
+    }
+
+    .objectives {
+      background: #ffffff;
+    }
+
+    .objectives-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+    }
+
+    .objective-box {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
+      padding: 24px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .objective-box:hover {
+      background: #ecfdf5;
+      transform: translateY(-6px);
+    }
+
+    .objective-box span {
+      font-size: 30px;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .objective-box p {
+      color: #374151;
+      font-size: 14px;
+      font-weight: 700;
     }
 
     .modules-grid {
@@ -435,7 +474,8 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .resources-grid {
+      .resources-grid,
+      .objectives-grid {
         grid-template-columns: repeat(2, 1fr);
       }
 
@@ -472,7 +512,8 @@
 
       .modules-grid,
       .news-grid,
-      .resources-grid {
+      .resources-grid,
+      .objectives-grid {
         grid-template-columns: 1fr;
       }
 
@@ -480,10 +521,10 @@
         font-size: 28px;
       }
 
-      .hero-card,
+      .hero-video,
       .about-box,
       .contact-box {
-        padding: 28px;
+        padding: 24px;
       }
     }
   </style>
@@ -514,7 +555,7 @@
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO AVEC VIDÉO -->
   <section class="hero">
     <div class="hero-container">
 
@@ -533,15 +574,59 @@
         </div>
       </div>
 
-      <div class="hero-card">
-        <h3>Objectifs de la plateforme</h3>
-        <ul>
-          <li>✔ Organiser les modules essentiels du concours</li>
-          <li>✔ Faciliter la révision progressive</li>
-          <li>✔ Proposer des QCM et exercices corrigés</li>
-          <li>✔ Regrouper les anciens sujets</li>
-          <li>✔ Suivre les informations importantes</li>
-        </ul>
+      <div class="hero-video">
+        <video controls autoplay muted loop>
+          <source src="eps-video.mp4" type="video/mp4">
+          Votre navigateur ne supporte pas la lecture de cette vidéo.
+        </video>
+
+        <div class="video-caption">
+          <h3>Préparation EPS en ligne</h3>
+          <p>
+            Révisez les modules, les QCM, les résumés et les anciens sujets dans un seul espace.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- OBJECTIFS -->
+  <section class="objectives">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Objectifs de la plateforme</h2>
+        <p>
+          Un espace simple, moderne et organisé pour accompagner votre préparation étape par étape.
+        </p>
+      </div>
+
+      <div class="objectives-grid">
+        <div class="objective-box">
+          <span>📚</span>
+          <p>Organiser les modules essentiels du concours</p>
+        </div>
+
+        <div class="objective-box">
+          <span>📝</span>
+          <p>Faciliter la révision progressive</p>
+        </div>
+
+        <div class="objective-box">
+          <span>✅</span>
+          <p>Proposer des QCM et exercices corrigés</p>
+        </div>
+
+        <div class="objective-box">
+          <span>📂</span>
+          <p>Regrouper les anciens sujets</p>
+        </div>
+
+        <div class="objective-box">
+          <span>📢</span>
+          <p>Suivre les informations importantes</p>
+        </div>
       </div>
 
     </div>
