@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prépa Concours EPS Maroc</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* HEADER */
+    header {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: #0f766e;
+    }
+
+    .logo span {
+      color: #111827;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+
+    nav ul li a {
+      font-weight: 600;
+      font-size: 15px;
+      color: #374151;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #0f766e;
+    }
+
+    .nav-btn {
+      background: #0f766e;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 25px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .nav-btn:hover {
+      background: #115e59;
+      color: white;
+    }
+
+    /* MENU RESPONSIVE */
+    .menu-toggle {
+      display: none;
+    }
+
+    .menu-icon {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 90vh;
+      background: linear-gradient(135deg, #0f766e, #134e4a);
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 70px 20px;
+    }
+
+    .hero-container {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-size: 48px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .hero-content p {
+      font-size: 18px;
+      color: #d1fae5;
+      margin-bottom: 30px;
+      max-width: 620px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      padding: 14px 24px;
+      border-radius: 30px;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: white;
+      color: #0f766e;
+    }
+
+    .btn-primary:hover {
+      background: #ecfdf5;
+      transform: translateY(-3px);
+    }
+
+    .btn-secondary {
+      border: 2px solid white;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: #0f766e;
+      transform: translateY(-3px);
+    }
+
+    .hero-card {
+      background: white;
+      color: #1f2937;
+      border-radius: 25px;
+      padding: 35px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-card h3 {
+      color: #0f766e;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .hero-card ul {
+      list-style: none;
+    }
+
+    .hero-card ul li {
+      padding: 12px 0;
+      border-bottom: 1px solid #e5e7eb;
+      font-weight: 600;
+    }
+
+    .hero-card ul li:last-child {
+      border-bottom: none;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 80px 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: #6b7280;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    /* MODULES */
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .module-card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      transition: 0.3s;
+      border: 1px solid #e5e7eb;
+    }
+
+    .module-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.1);
+    }
+
+    .module-icon {
+      width: 55px;
+      height: 55px;
+      border-radius: 15px;
+      background: #ccfbf1;
+      color: #0f766e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .module-card h3 {
+      font-size: 21px;
+      margin-bottom: 12px;
+      color: #111827;
+    }
+
+    .module-card p {
+      color: #6b7280;
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+
+    .module-card a {
+      color: #0f766e;
+      font-weight: 700;
+    }
+
+    /* FEATURES */
+    .features {
+      background: #ffffff;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .feature-box {
+      background: #f9fafb;
+      border-radius: 18px;
+      padding: 25px;
+      text-align: center;
+      border: 1px solid #e5e7eb;
+    }
+
+    .feature-box h3 {
+      color: #0f766e;
+      margin-bottom: 10px;
+    }
+
+    .feature-box p {
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    /* NEWS */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .news-card {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    .news-date {
+      background: #0f766e;
+      color: white;
+      padding: 12px 18px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .news-content {
+      padding: 25px;
+    }
+
+    .news-content h3 {
+      margin-bottom: 12px;
+      color: #111827;
+    }
+
+    .news-content p {
+      color: #6b7280;
+      font-size: 15px;
+    }
+
+    /* ABOUT */
+    .about {
+      background: linear-gradient(135deg, #ecfdf5, #f0fdfa);
+    }
+
+    .about-box {
+      background: white;
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06);
+      text-align: center;
+    }
+
+    .about-box p {
+      color: #4b5563;
+      max-width: 850px;
+      margin: auto;
+      font-size: 17px;
+    }
+
+    /* CONTACT */
+    .contact-box {
+      background: #111827;
+      color: white;
+      padding: 45px;
+      border-radius: 25px;
+      text-align: center;
+    }
+
+    .contact-box h2 {
+      margin-bottom: 15px;
+      font-size: 32px;
+    }
+
+    .contact-box p {
+      color: #d1d5db;
+      margin-bottom: 25px;
+    }
+
+    .contact-box a {
+      display: inline-block;
+      background: #0f766e;
+      padding: 14px 25px;
+      border-radius: 30px;
+      color: white;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+
+    .contact-box a:hover {
+      background: #14b8a6;
+      transform: translateY(-3px);
+    }
+
+    /* FOOTER */
+    footer {
+      background: #020617;
+      color: #d1d5db;
+      text-align: center;
+      padding: 25px 20px;
+      font-size: 14px;
+    }
+
+    footer span {
+      color: #5eead4;
+      font-weight: 700;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-content p {
+        margin: 0 auto 30px;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .modules-grid,
+      .news-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .menu-icon {
+        display: block;
+      }
+
+      nav ul {
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        left: 20px;
+        background: white;
+        flex-direction: column;
+        padding: 25px;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        display: none;
+      }
+
+      .menu-toggle:checked ~ nav ul {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-content h1 {
+        font-size: 34px;
+      }
+
+      .hero-content p {
+        font-size: 16px;
+      }
+
+      .modules-grid,
+      .news-grid,
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title h2 {
+        font-size: 28px;
+      }
+
+      .hero-card,
+      .about-box,
+      .contact-box {
+        padding: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="navbar">
+      <div class="logo">EPS <span>Concours</span></div>
+
+      <input type="checkbox" id="menu-toggle" class="menu-toggle">
+      <label for="menu-toggle" class="menu-icon">☰</label>
+
+      <nav>
+        <ul>
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#modules">Modules</a></li>
+          <li><a href="#ressources">Ressources</a></li>
+          <li><a href="#sujets">Sujets</a></li>
+          <li><a href="#actualites">Actualités</a></li>
+          <li><a href="#apropos">À propos</a></li>
+          <li><a class="nav-btn" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="accueil">
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1>Préparez efficacement le concours EPS au Maroc</h1>
+        <p>
+          Une plateforme organisée pour accompagner les candidats au concours de recrutement
+          des enseignants d’Éducation Physique et Sportive : cours, résumés, QCM, exercices,
+          anciens sujets et conseils de préparation.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#modules" class="btn-primary">Commencer la préparation</a>
+          <a href="#ressources" class="btn-secondary">Voir les ressources</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>Objectif du site</h3>
+        <ul>
+          <li>✔ Organiser les modules essentiels</li>
+          <li>✔ Faciliter la révision progressive</li>
+          <li>✔ Proposer des QCM et exercices</li>
+          <li>✔ Regrouper les anciens sujets</li>
+          <li>✔ Suivre les actualités importantes</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULES -->
+  <section id="modules">
+    <div class="container">
+      <div class="section-title">
+        <h2>Modules du concours EPS</h2>
+        <p>
+          Accédez progressivement aux différents modules nécessaires pour une préparation complète
+          et structurée du concours.
+        </p>
+      </div>
+
+      <div class="modules-grid">
+        <div class="module-card">
+          <div class="module-icon">📘</div>
+          <h3>Didactique de l’EPS</h3>
+          <p>Notions fondamentales, traitement didactique, situations d’apprentissage et critères de réussite.</p>
+          <a href="#">Voir le cours →</a>
+        </div>
+
+        <div class="module-card">
+          <div class="module-icon">🏃</div>
+          <h3>Spécialité sportive</h3>
+          <p>Athlétisme, sports collectifs, gymnastique, activités physiques et compétences motrices.</p>
+          <a href="#">Voir le cours →</a>
+        </div>
+
+        <div class="module-card">
+          <div class="module-icon">🧠</div>
+          <h3>Sciences de l’éducation</h3>
+          <p>Pédagogie, apprentissage, motivation, évaluation, gestion de classe et théories éducatives.</p>
+          <a href="#">Voir le cours →</a>
+        </div>
+
+        <div class="module-card">
+          <div class="module-icon">📋</div>
+          <h3>Planification pédagogique</h3>
+          <p>Projet pédagogique, fiche de préparation, objectifs, compétences et progression annuelle.</p>
+          <a href="#">Voir le cours →</a>
+        </div>
+
+        <div class="module-card">
+          <div class="module-icon">⚖️</div>
+          <h3>Législation scolaire</h3>
+          <p>Textes officiels, droits et devoirs, responsabilités, vie scolaire et organisation du système éducatif.</p>
+          <a href="#">Voir le cours →</a>
+        </div>
+
+        <div class="module-card">
+          <div class="module-icon">✅</div>
+          <h3>Évaluation en EPS</h3>
+          <p>Types d’évaluation, critères, indicateurs, observation, remédiation et suivi des apprentissages.</p>
+          <a href="#">Voir le cours →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESSOURCES -->
+  <section class="features" id="ressources">
+    <div class="container">
+      <div class="section-title">
+        <h2>Ressources de préparation</h2>
+        <p>
+          Des outils simples et efficaces pour réviser régulièrement et progresser étape par étape.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-box">
+          <h3>Résumés</h3>
+          <p>Fiches synthétiques pour retenir l’essentiel de chaque module.</p>
+        </div>
+
+        <div class="feature-box">
+          <h3>QCM</h3>
+          <p>Questions interactives pour tester vos connaissances.</p>
+        </div>
+
+        <div class="feature-box">
+          <h3>Exercices</h3>
+          <p>Situations d’entraînement proches de l’esprit du concours.</p>
+        </div>
+
+        <div class="feature-box" id="sujets">
+          <h3>Anciens sujets</h3>
+          <p>Sujets de concours précédents pour mieux comprendre les attentes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACTUALITÉS -->
+  <section id="actualites">
+    <div class="container">
+      <div class="section-title">
+        <h2>Actualités et informations importantes</h2>
+        <p>
+          Cette section sera consacrée aux annonces, dates importantes, documents officiels
+          et conseils de préparation.
+        </p>
+      </div>
+
+      <div class="news-grid">
+        <div class="news-card">
+          <div class="news-date">Information</div>
+          <div class="news-content">
+            <h3>Organisation du concours</h3>
+            <p>Retrouvez bientôt les informations essentielles concernant les épreuves et les modalités.</p>
+          </div>
+        </div>
+
+        <div class="news-card">
+          <div class="news-date">Révision</div>
+          <div class="news-content">
+            <h3>Programme de préparation</h3>
+            <p>Un planning de révision progressif sera ajouté pour organiser votre travail efficacement.</p>
+          </div>
+        </div>
+
+        <div class="news-card">
+          <div class="news-date">Ressources</div>
+          <div class="news-content">
+            <h3>Nouveaux contenus</h3>
+            <p>Des cours, résumés, QCM et anciens sujets seront publiés progressivement.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- À PROPOS -->
+  <section class="about" id="apropos">
+    <div class="container">
+      <div class="section-title">
+        <h2>À propos de la plateforme</h2>
+      </div>
+
+      <div class="about-box">
+        <p>
+          Ce site a été conçu pour aider les candidats au concours de recrutement des enseignants
+          d’Éducation Physique et Sportive au Maroc. Il vise à proposer une préparation claire,
+          structurée et accessible, en regroupant les cours essentiels, les résumés, les exercices,
+          les QCM, les anciens sujets et les informations utiles dans un seul espace.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-box">
+        <h2>Besoin d’aide ou de ressources ?</h2>
+        <p>
+          Vous pourrez bientôt utiliser cette section pour envoyer vos remarques,
+          vos questions ou vos propositions d’amélioration.
+        </p>
+        <a href="mailto:contact@example.com">Nous contacter</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      © 2026 <span>EPS Concours Maroc</span> — Plateforme de préparation au concours EPS.
+    </p>
+  </footer>
+
+</body>
+</html>
