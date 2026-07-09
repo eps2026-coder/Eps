@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Planification des apprentissages - Prépa Concours EPS Maroc</title>
+
+  <link rel="icon" href="logo.jpeg" type="image/jpeg">
+  <link rel="apple-touch-icon" href="logo.jpeg">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      color: #0f766e;
+    }
+
+    .logo img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 2px solid #ccfbf1;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .logo-text strong {
+      color: #0f766e;
+      font-size: 20px;
+    }
+
+    .logo-text span {
+      color: #111827;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    nav ul li a {
+      font-size: 15px;
+      font-weight: 600;
+      color: #374151;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: #0f766e;
+    }
+
+    .nav-btn {
+      background: #0f766e;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 25px;
+      transition: 0.3s;
+    }
+
+    .nav-btn:hover {
+      background: #115e59;
+      color: white;
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    .menu-icon {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    .page-hero {
+      background: linear-gradient(135deg, #0f766e, #134e4a);
+      color: white;
+      padding: 95px 20px;
+      text-align: center;
+    }
+
+    .page-hero h1 {
+      font-size: 44px;
+      margin-bottom: 18px;
+    }
+
+    .page-hero p {
+      max-width: 850px;
+      margin: auto;
+      font-size: 18px;
+      color: #d1fae5;
+    }
+
+    section {
+      padding: 70px 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title h2 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: #6b7280;
+      max-width: 780px;
+      margin: auto;
+    }
+
+    .intro-box {
+      background: white;
+      border-radius: 25px;
+      padding: 35px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      border: 1px solid #e5e7eb;
+      margin-bottom: 45px;
+    }
+
+    .intro-box h2 {
+      color: #0f766e;
+      font-size: 30px;
+      margin-bottom: 15px;
+    }
+
+    .intro-box p {
+      color: #4b5563;
+      margin-bottom: 18px;
+      font-size: 16px;
+    }
+
+    .intro-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 25px;
+    }
+
+    .intro-item {
+      background: #f9fafb;
+      padding: 20px;
+      border-radius: 18px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .intro-item h3 {
+      color: #111827;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .intro-item p {
+      color: #6b7280;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .concept-section {
+      background: #ffffff;
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .concept-card {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 20px;
+      padding: 24px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .concept-card:hover {
+      background: #ecfdf5;
+      transform: translateY(-6px);
+    }
+
+    .concept-card span {
+      font-size: 34px;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .concept-card h3 {
+      color: #0f766e;
+      margin-bottom: 8px;
+      font-size: 19px;
+    }
+
+    .concept-card p {
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .pdf-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      margin-bottom: 50px;
+    }
+
+    .pdf-card {
+      background: white;
+      border-radius: 22px;
+      padding: 28px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      transition: 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pdf-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 6px;
+      width: 100%;
+      background: #0f766e;
+    }
+
+    .pdf-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.1);
+    }
+
+    .pdf-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 17px;
+      background: #ccfbf1;
+      color: #0f766e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      margin-bottom: 18px;
+    }
+
+    .pdf-card h3 {
+      color: #111827;
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .pdf-card p {
+      color: #6b7280;
+      font-size: 15px;
+      margin-bottom: 22px;
+    }
+
+    .pdf-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-view,
+    .btn-download {
+      border: none;
+      padding: 11px 16px;
+      border-radius: 25px;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-view {
+      background: #0f766e;
+      color: white;
+    }
+
+    .btn-view:hover {
+      background: #115e59;
+      transform: translateY(-2px);
+    }
+
+    .btn-download {
+      background: #111827;
+      color: white;
+      display: inline-block;
+    }
+
+    .btn-download:hover {
+      background: #374151;
+      transform: translateY(-2px);
+    }
+
+    .viewer-section {
+      background: #ffffff;
+    }
+
+    .pdf-viewer-box {
+      background: white;
+      border-radius: 25px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      border: 1px solid #e5e7eb;
+    }
+
+    .viewer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .viewer-header h2 {
+      color: #0f766e;
+      font-size: 26px;
+    }
+
+    .viewer-header a {
+      background: #0f766e;
+      color: white;
+      padding: 11px 18px;
+      border-radius: 25px;
+      font-weight: 800;
+      transition: 0.3s;
+    }
+
+    .viewer-header a:hover {
+      background: #115e59;
+    }
+
+    iframe {
+      width: 100%;
+      height: 700px;
+      border: none;
+      border-radius: 18px;
+      background: #f3f4f6;
+    }
+
+    .method-box {
+      background: linear-gradient(135deg, #ecfdf5, #f0fdfa);
+      border-radius: 25px;
+      padding: 40px;
+      border: 1px solid #ccfbf1;
+    }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .method-item {
+      background: white;
+      padding: 24px;
+      border-radius: 18px;
+      text-align: center;
+      border: 1px solid #e5e7eb;
+    }
+
+    .method-item span {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: #0f766e;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      font-weight: 900;
+    }
+
+    .method-item h3 {
+      color: #111827;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .method-item p {
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    footer {
+      background: #020617;
+      color: #d1d5db;
+      text-align: center;
+      padding: 25px 20px;
+      font-size: 14px;
+    }
+
+    footer span {
+      color: #5eead4;
+      font-weight: 800;
+    }
+
+    @media (max-width: 950px) {
+      .intro-list,
+      .pdf-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .concept-grid,
+      .method-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .menu-icon {
+        display: block;
+      }
+
+      nav ul {
+        position: absolute;
+        top: 78px;
+        right: 20px;
+        left: 20px;
+        background: white;
+        flex-direction: column;
+        padding: 25px;
+        border-radius: 20px;
+        display: none;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      }
+
+      .menu-toggle:checked ~ nav ul {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .page-hero h1 {
+        font-size: 32px;
+      }
+
+      .page-hero p {
+        font-size: 16px;
+      }
+
+      .intro-list,
+      .pdf-grid,
+      .concept-grid,
+      .method-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title h2,
+      .intro-box h2 {
+        font-size: 27px;
+      }
+
+      .intro-box,
+      .pdf-card,
+      .method-box,
+      .pdf-viewer-box {
+        padding: 24px;
+      }
+
+      iframe {
+        height: 500px;
+      }
+
+      .logo img {
+        width: 42px;
+        height: 42px;
+      }
+
+      .logo-text strong {
+        font-size: 17px;
+      }
+
+      .logo-text span {
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="navbar">
+
+      <a href="index.html" class="logo">
+        <img src="logo.jpeg" alt="Logo EPS Concours">
+        <div class="logo-text">
+          <strong>EPS Concours</strong>
+          <span>Prépa Maroc</span>
+        </div>
+      </a>
+
+      <input type="checkbox" id="menu-toggle" class="menu-toggle">
+      <label for="menu-toggle" class="menu-icon">☰</label>
+
+      <nav>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="modules.html">Modules</a></li>
+          <li><a href="cours.html" class="active">Cours</a></li>
+          <li><a href="resumes.html">Résumés</a></li>
+          <li><a href="qcm.html">QCM</a></li>
+          <li><a href="sujets.html">Sujets</a></li>
+          <li><a href="actualites.html">Actualités</a></li>
+          <li><a href="contact.html" class="nav-btn">Contact</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <h1>Planification des apprentissages</h1>
+    <p>
+      Cours, documents PDF et ressources pour comprendre comment organiser une progression,
+      construire une unité d’apprentissage et préparer une séance d’EPS.
+    </p>
+  </section>
+
+  <section>
+    <div class="container">
+
+      <div class="intro-box">
+        <h2>Présentation du module</h2>
+
+        <p>
+          La planification des apprentissages consiste à organiser les contenus d’enseignement
+          dans le temps afin de permettre aux élèves de progresser progressivement vers les
+          compétences attendues.
+        </p>
+
+        <p>
+          En EPS, planifier signifie choisir des objectifs, construire une progression,
+          organiser des situations d’apprentissage, prévoir l’évaluation et adapter
+          l’enseignement au niveau réel des élèves.
+        </p>
+
+        <div class="intro-list">
+          <div class="intro-item">
+            <h3>Objectif</h3>
+            <p>Savoir organiser les apprentissages avant, pendant et après la séance.</p>
+          </div>
+
+          <div class="intro-item">
+            <h3>Importance</h3>
+            <p>Module essentiel pour construire une fiche pédagogique et une progression.</p>
+          </div>
+
+          <div class="intro-item">
+            <h3>Méthode</h3>
+            <p>Relier objectifs, compétences, situations, critères de réussite et évaluation.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="concept-section">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Notions principales à maîtriser</h2>
+        <p>
+          Ces notions constituent la base de la planification pédagogique en EPS.
+        </p>
+      </div>
+
+      <div class="concept-grid">
+
+        <div class="concept-card">
+          <span>🎯</span>
+          <h3>Objectifs</h3>
+          <p>Définir ce que l’élève doit apprendre et réussir.</p>
+        </div>
+
+        <div class="concept-card">
+          <span>🧩</span>
+          <h3>Compétences</h3>
+          <p>Mobiliser des ressources dans une situation donnée.</p>
+        </div>
+
+        <div class="concept-card">
+          <span>📅</span>
+          <h3>Progression</h3>
+          <p>Organiser les apprentissages sur une période ou une année.</p>
+        </div>
+
+        <div class="concept-card">
+          <span>📋</span>
+          <h3>Fiche pédagogique</h3>
+          <p>Préparer les étapes, consignes, situations et évaluations.</p>
+        </div>
+
+        <div class="concept-card">
+          <span>🏃</span>
+          <h3>Séance EPS</h3>
+          <p>Structurer échauffement, apprentissage, retour au calme et bilan.</p>
+        </div>
+
+        <div class="concept-card">
+          <span>👥</span>
+          <h3>Organisation</h3>
+          <p>Gérer groupes, matériel, espace, sécurité et temps de pratique.</p>
+        </div>
+
+        <div class="concept-card">
+          <span>✅</span>
+          <h3>Évaluation</h3>
+          <p>Observer les progrès à partir de critères précis.</p>
+        </div>
+
+        <div class="concept-card">
+          <span>🔁</span>
+          <h3>Remédiation</h3>
+          <p>Adapter les situations selon les difficultés des élèves.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Documents PDF du module</h2>
+        <p>
+          Clique sur “Lire le PDF” pour afficher le document directement dans la page,
+          ou sur “Télécharger” pour l’ouvrir séparément.
+        </p>
+      </div>
+
+      <div class="pdf-grid">
+
+        <div class="pdf-card">
+          <div class="pdf-icon">📄</div>
+          <h3>Planification des apprentissages</h3>
+          <p>Introduction générale à la planification pédagogique et à son rôle en EPS.</p>
+
+          <div class="pdf-actions">
+            <button class="btn-view" onclick="loadPDF('pdfs/planification-apprentissages.pdf', 'Planification des apprentissages')">Lire le PDF</button>
+            <a class="btn-download" href="pdfs/planification-apprentissages.pdf" target="_blank">Télécharger</a>
+          </div>
+        </div>
+
+        <div class="pdf-card">
+          <div class="pdf-icon">📄</div>
+          <h3>Objectifs et compétences</h3>
+          <p>Différence entre objectif, compétence, capacité, savoir-faire et attitude.</p>
+
+          <div class="pdf-actions">
+            <button class="btn-view" onclick="loadPDF('pdfs/objectifs-competences.pdf', 'Objectifs et compétences')">Lire le PDF</button>
+            <a class="btn-download" href="pdfs/objectifs-competences.pdf" target="_blank">Télécharger</a>
+          </div>
+        </div>
+
+        <div class="pdf-card">
+          <div class="pdf-icon">📄</div>
+          <h3>Progression annuelle</h3>
+          <p>Organisation des contenus, cycles, APSA et compétences sur l’année scolaire.</p>
+
+          <div class="pdf-actions">
+            <button class="btn-view" onclick="loadPDF('pdfs/progression-annuelle.pdf', 'Progression annuelle')">Lire le PDF</button>
+            <a class="btn-download" href="pdfs/progression-annuelle.pdf" target="_blank">Télécharger</a>
+          </div>
+        </div>
+
+        <div class="pdf-card">
+          <div class="pdf-icon">📄</div>
+          <h3>Unité d’apprentissage</h3>
+          <p>Construction d’un cycle ou d’une unité autour d’une APSA et d’une compétence.</p>
+
+          <div class="pdf-actions">
+            <button class="btn-view" onclick="loadPDF('pdfs/unite-apprentissage.pdf', 'Unité d’apprentissage')">Lire le PDF</button>
+            <a class="btn-download" href="pdfs/unite-apprentissage.pdf" target="_blank">Télécharger</a>
+          </div>
+        </div>
+
+        <div class="pdf-card">
+          <div class="pdf-icon">📄</div>
+          <h3>Fiche pédagogique EPS</h3>
+          <p>Structure d’une fiche : objectifs, matériel, situations, consignes et critères.</p>
+
+          <div class="pdf-actions">
+            <button class="btn-view" onclick="loadPDF('pdfs/fiche-pedagogique-eps.pdf', 'Fiche pédagogique EPS')">Lire le PDF</button>
+            <a class="btn-download" href="pdfs/fiche-pedagogique-eps.pdf" target="_blank">Télécharger</a>
+          </div>
+        </div>
+
+        <div class="pdf-card">
+          <div class="pdf-icon">📄</div>
+          <h3>La séance d’EPS</h3>
+          <p>Organisation pratique d’une séance : phases, temps, sécurité et bilan.</p>
+
+          <div class="pdf-actions">
+            <button class="btn-view" onclick="loadPDF('pdfs/seance-eps.pdf', 'La séance d’EPS')">Lire le PDF</button>
+            <a class="btn-download" href="pdfs/seance-eps.pdf" target="_blank">Télécharger</a>
+          </div>
+        </div>
+
+        <div class="pdf-card">
+          <div class="pdf-icon">📄</div>
+          <h3>Gestion du temps et de l’espace</h3>
+          <p>Organisation du matériel, des groupes, de la sécurité et du temps de pratique.</p>
+
+          <div class="pdf-actions">
+            <button class="btn-view" onclick="loadPDF('pdfs/gestion-temps-espace.pdf', 'Gestion du temps et de l’espace')">Lire le PDF</button>
+            <a class="btn-download" href="pdfs/gestion-temps-espace.pdf" target="_blank">Télécharger</a>
+          </div>
+        </div>
+
+        <div class="pdf-card">
+          <div class="pdf-icon">📄</div>
+          <h3>Évaluation et planification</h3>
+          <p>Intégrer l’évaluation diagnostique, formative et sommative dans la progression.</p>
+
+          <div class="pdf-actions">
+            <button class="btn-view" onclick="loadPDF('pdfs/evaluation-planification.pdf', 'Évaluation et planification')">Lire le PDF</button>
+            <a class="btn-download" href="pdfs/evaluation-planification.pdf" target="_blank">Télécharger</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="viewer-section">
+    <div class="container">
+
+      <div class="pdf-viewer-box">
+        <div class="viewer-header">
+          <h2 id="pdfTitle">Lecteur PDF</h2>
+          <a id="openPdfLink" href="pdfs/planification-apprentissages.pdf" target="_blank">Ouvrir dans un nouvel onglet</a>
+        </div>
+
+        <iframe id="pdfViewer" src="pdfs/planification-apprentissages.pdf"></iframe>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Méthode de travail conseillée</h2>
+        <p>
+          Pour bien maîtriser la planification, il faut apprendre à passer de l’objectif général
+          à une séance concrète et réalisable.
+        </p>
+      </div>
+
+      <div class="method-box">
+        <div class="method-grid">
+
+          <div class="method-item">
+            <span>1</span>
+            <h3>Définir</h3>
+            <p>Identifier la compétence, l’objectif et le niveau des élèves.</p>
+          </div>
+
+          <div class="method-item">
+            <span>2</span>
+            <h3>Organiser</h3>
+            <p>Préparer la progression, les situations et le matériel nécessaire.</p>
+          </div>
+
+          <div class="method-item">
+            <span>3</span>
+            <h3>Conduire</h3>
+            <p>Mettre en œuvre la séance avec consignes claires et sécurité.</p>
+          </div>
+
+          <div class="method-item">
+            <span>4</span>
+            <h3>Évaluer</h3>
+            <p>Observer les progrès et proposer une remédiation adaptée.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>
+      © 2026 <span>EPS Concours Maroc</span> — Planification des apprentissages.
+    </p>
+  </footer>
+
+  <script>
+    function loadPDF(pdfPath, title) {
+      document.getElementById("pdfViewer").src = pdfPath;
+      document.getElementById("pdfTitle").textContent = title;
+      document.getElementById("openPdfLink").href = pdfPath;
+
+      document.querySelector(".viewer-section").scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+  </script>
+
+</body>
+  </html>
